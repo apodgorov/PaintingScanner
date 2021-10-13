@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Painting Scanner</string>
+    <string name="success_title">You successfully scanned:</string>
+    <string name="back_to_scanner">Back to scanner</string>
+    <string name="play_sound">Play sound</string>
+    <string name="stop_sound">Stop sound</string>
+</resources>
