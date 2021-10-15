@@ -1,5 +1,6 @@
 package com.podgorovaa.paintingscanner
 
+import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import kotlinx.android.synthetic.main.fragment_success.view.*
 import android.media.AudioManager
+import android.net.Uri
 
 class SuccessFragment : Fragment() {
     private var mPlayer: MediaPlayer? = null
@@ -19,22 +21,17 @@ class SuccessFragment : Fragment() {
         val safeArgs: SuccessFragmentArgs by navArgs()
         val code = safeArgs.code
         //val filename = Uri.parse("R.raw.$code")
-        //val filename = Uri.parse("https://drive.google.com/file/d/1hUy8R1sMdbrIhV9Ixt_JpBfjtqd9Wkhx/view?usp=sharing")
+        val filename = Uri.parse("https://www.dropbox.com/s/1upjc26ygl818fm/p1.mp3")
+        val filename2  = "https://www.dropbox.com/s/1upjc26ygl818fm/p1.mp3"
         v.fragment_success_text_view_code.text = code
-
-        if (code == "p1"){
-            mPlayer = MediaPlayer.create(requireContext(), R.raw.p1)
-            mPlayer?.start()
-        }
-        if (code == "p2"){
-            mPlayer = MediaPlayer.create(requireContext(), R.raw.p2)
-            mPlayer?.start()
-        }
         //mPlayer = MediaPlayer.create(requireContext(), R.raw.painting_number_one)
         //mPlayer = MediaPlayer()
-        //mPlayer?.setDataSource(requireContext(), filename)
+        mPlayer?.setAudioStreamType(AudioManager.STREAM_MUSIC)
+        mPlayer?.setDataSource(filename2)
+        mPlayer?.prepare()
+        //mPlayer?.setDataSource(requireContext(), R.raw.p1)
         //mPlayer?.set
-        //mPlayer?.start()
+        mPlayer?.start()
 
         v.fragment_success_button_back_to_scanner.setOnClickListener {
             mPlayer?.stop()
