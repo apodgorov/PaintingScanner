@@ -16,8 +16,6 @@ import kotlinx.android.synthetic.main.fragment_success.view.*
 
 @Suppress("DEPRECATION")
 class SuccessFragment : Fragment(), OnPreparedListener, OnCompletionListener {
-    private var mPlayer: MediaPlayer? = null
-    private var am: AudioManager? = null
     private var mediaPlayer = MediaPlayer().apply {
         setOnPreparedListener { start() }
         setOnCompletionListener { reset() }
@@ -27,24 +25,16 @@ class SuccessFragment : Fragment(), OnPreparedListener, OnCompletionListener {
         val safeArgs: SuccessFragmentArgs by navArgs()
         val code = safeArgs.code
         //val filename = Uri.parse("R.raw.$code")
-        val filename = Uri.parse("https://www.dropbox.com/s/1upjc26ygl818fm/p1.mp3")
+        val filename = "https://filedn.eu/lgIIlvB83JTfr5mbbnJkE2S/mp3/" + code.toString()+ ".mp3"
         val filename2  = "https://getfile.dokpub.com/yandex/get/https://disk.yandex.ru/d/3DA6tUxAVQsCFw"
+        var filename3 = "https://getfile.dokpub.com/yandex/get/" +code.toString()
         v.fragment_success_text_view_code.text = code
-        //mPlayer = MediaPlayer.create(requireContext(), R.raw.painting_number_one)
-        //mPlayer = MediaPlayer()
-        //mPlayer?.setAudioStreamType(AudioManager.STREAM_MUSIC)
-        //mPlayer?.setDataSource(filename2)
-        //mPlayer?.setOnPreparedListener(this)
-        //mPlayer?.setOnCompletionListener { this }
-        //mPlayer?.prepareAsync()
-        //mPlayer?.start()
         mediaPlayer.run {
             reset()
-            setDataSource(filename2)
+            setDataSource(filename3)
             prepareAsync()
         }
         v.fragment_success_button_back_to_scanner.setOnClickListener {
-            mPlayer?.stop()
             findNavController().navigateUp()
         }
 
